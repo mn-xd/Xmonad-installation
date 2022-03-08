@@ -1,4 +1,8 @@
+#this project is meant to be the easiest way to install arch linux
+#with your prefered desktop-enviroment
 #You can see tutorial on youtube by distrotube
+
+
 
 timedatectl set-ntp true
 baseComponents(){
@@ -19,8 +23,6 @@ baseKernel(){
     pacstrap /mnt base linux linux-firmware
     genfstab -U /mnt >> /mnt/etc/fstab
     arch-chroot /mnt
-
-
 }
 clock(){
     #TODO changing zone and region
@@ -36,14 +38,15 @@ settingUpUsers(){
     echo "Type in your host name"
     sleep 5s
     nano /etc/hostname
-    sleep 30s
+    #TODO check if scripts doesn't start to quicly
+    #sleep 30s
     echo "Add this 3 lines"
     echo "change your_host_name with hostname that you typed above"
     echo "127.0.0.1    localhost"
     echo "::1          localhost"
     echo "127.0.1.1    your_host_name.localdomain    your_host_name"
-    echo "copy this and paste to file that will be automaticly opened"
-    sleep 20s
+    echo "copy this and paste to file that will be in few seconds automaticly opened"
+    sleep 50s
     nano /etc/hosts
     echo "Set up your ROOT password"
     passwd
@@ -55,3 +58,15 @@ settingUpUsers(){
     passwd $username
     usermod -aG wheel,audio,video,optical,storage $username
 }
+
+#TODO add desktop-enviroments
+
+processingFunction(){
+    baseComponents
+    diskChoser
+    baseKernel
+    clock
+    settingUpUsers
+}
+
+processingFunction
