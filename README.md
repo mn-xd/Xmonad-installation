@@ -1,4 +1,4 @@
 # Easier to use Arch linux installer.
-# Still in beta
+## Still in beta
 
-It sets up everything for you only need to write few lines to setup archlinux installation.
+It sets up everything for you, you only need to write few lines of code to setup archlinux installation.
