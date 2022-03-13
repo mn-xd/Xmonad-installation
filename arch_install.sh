@@ -13,11 +13,10 @@ baseComponents(){
     pacman -S --noconfirm git
 }
 diskChoser(){
-    echo fdisk -l
+    fdisk -l
     echo "Select disk you want to install arch linux ex---(/dev/sda)"
     read answer
     fdisk $answer
-
     #TODO done setting up disk
 
 }
