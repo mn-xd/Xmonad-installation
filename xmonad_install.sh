@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 Dependencies(){
@@ -27,9 +27,11 @@ webBrowser(){
 alacrittyInstallation(){
 read alacritty1
 
-if ["$alacritty1" == "y"] || ["$alacritty1" == "yes"]; then
+if ["$alacritty1" == "y"] || ["$alacritty1" == "yes"];
+then
 	alacritty
-elif ["$alacritty1" == "n"] || ["$alacritty1" == "no"]; then
+elif ["$alacritty1" == "n"] || ["$alacritty1" == "no"];
+then
 	:
 else
 	echo "Input not recognised, must be yes or no"
@@ -39,9 +41,11 @@ fi
 webBrowserInstallation(){
 read firefox
 
-if ["$firefox" == "y"] || ["$firefox" == "yes"]; then
+if ["$firefox" == "y"] || ["$firefox" == "yes"];
+then
 	webBrowser
-elif ["$firefox" == "n"] || ["$firefox" == "no"]; then
+elif ["$firefox" == "n"] || ["$firefox" == "no"];
+then
 	:
 else
 	echo "Input not recognised, must be yes or no"
@@ -51,14 +55,16 @@ fi
 installation(){
     echo "Do you want to install xmonad with all it's dependencies (y,n)"
     read xmonad
-    if ["$xmonad" == "y"] || ["$xmonad" == "yes"]; then
+    if ["$xmonad" == "y"] || ["$xmonad" == "yes"];
+		then
 			Dependencies
     	basePackages
       echo "Do you want to install alacritty terminal (y,n)"
 			alacrittyInstallation
 			echo "Do you want to install firefox (y,n)"
 			webBrowserInstallation
-    elif ["$xmonad" == "n"] || ["$xmonad" == "no"]; then
+    elif ["$xmonad" == "n"] || ["$xmonad" == "no"];
+		then
       :
     fi
 
