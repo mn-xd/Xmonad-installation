@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #this project is meant to be the easiest way to install arch linux
 #with your prefered desktop-enviroment
@@ -17,6 +17,7 @@ diskChoser(){
     echo "Select disk you want to install arch linux ex---(/dev/sda)"
     read answer
     fdisk $answer
+    #parted -l
     #TODO done setting up disk
 
 }
