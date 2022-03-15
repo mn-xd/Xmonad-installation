@@ -25,6 +25,34 @@ basePackages(){
 webBrowser(){
     sudo pacman -S firefox
 }
+alacrittyInstallation(){
+read alacritty1
+
+if ["$alacritty1" == "y"] || ["$alacritty1" == "yes"];
+then
+	alacritty
+elif ["$alacritty1" == "n"] || ["$alacritty1" == "no"];
+then
+	:
+else
+	echo "Input not recognised, must be yes or no"
+	alacrittyInstallation
+fi
+}
+webBrowserInstallation(){
+read firefox
+
+if ["$firefox" == "y"] || ["$firefox" == "yes"];
+then
+	webBrowser
+elif ["$firefox" == "n"] || ["$firefox" == "no"];
+then
+	:
+else
+	echo "Input not recognised, must be yes or no"
+	webBrowserInstallation
+fi
+}
 installation(){
     echo "Do you want to install xmonad with all it's dependencies (y,n)"
     read xmonad
@@ -33,25 +61,10 @@ installation(){
         Dependencies
         basePackages
         echo "Do you want to install alacritty terminal (y,n)"
-        read alacritty1
-        if [$alacritty1 == "y"] || [$alacritty1 == "yes"];
-        then
-            alacritty
-        elif [$alacritty1 == "n"] || [$alacritty1 == "no"];
-        then
-            :
-        fi
-        echo "Do you want to install firefox (y,n)"
-        read firefox
-        if [$firefox == "y"] || [$firefox == "yes"];
-        then
-            webBrowser
-        elif [$firefox == "n"] || [$firefox == "no"];
-        then
-            :
-        fi
-
-    elif [$xmonad == "n"] || [$xmonad == "no"];
+				alacrittyInstallation
+				echo "Do you want to install firefox (y,n)"
+				webBrowserInstallation
+    elif ["$xmonad" == "n"] || ["$xmonad" == "no"];
     then
         :
     fi
