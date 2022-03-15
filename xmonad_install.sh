@@ -26,11 +26,12 @@ webBrowser(){
 }
 alacrittyInstallation(){
 read alacritty1
+alacritty1="$(echo $alacritty1 | tr '[:upper:]' '[:lower:]')"
 
-if ["$alacritty1" == "y"] || ["$alacritty1" == "yes"];
+if ["$alacritty1" == "y"] || ["$alacritty1" == "yes"]
 then
 	alacritty
-elif ["$alacritty1" == "n"] || ["$alacritty1" == "no"];
+elif ["$alacritty1" == "n"] || ["$alacritty1" == "no"]
 then
 	:
 else
@@ -40,11 +41,12 @@ fi
 }
 webBrowserInstallation(){
 read firefox
+firefox="$(echo $firefox | tr '[:upper:]' '[:lower:]')"
 
-if ["$firefox" == "y"] || ["$firefox" == "yes"];
+if ["$firefox" == "y"] || ["$firefox" == "yes"]
 then
 	webBrowser
-elif ["$firefox" == "n"] || ["$firefox" == "no"];
+elif ["$firefox" == "n"] || ["$firefox" == "no"]
 then
 	:
 else
@@ -55,7 +57,8 @@ fi
 installation(){
     echo "Do you want to install xmonad with all it's dependencies (y,n)"
     read xmonad
-    if ["$xmonad" == "y"] || ["$xmonad" == "yes"];
+		xmonad="$(echo $xmonad | tr '[:upper:]' '[:lower:]')"
+    if ["$xmonad" == "y"] || ["$xmonad" == "yes"]
 		then
 			Dependencies
     	basePackages
@@ -63,7 +66,7 @@ installation(){
 			alacrittyInstallation
 			echo "Do you want to install firefox (y,n)"
 			webBrowserInstallation
-    elif ["$xmonad" == "n"] || ["$xmonad" == "no"];
+    elif ["$xmonad" == "n"] || ["$xmonad" == "no"]
 		then
       :
     fi
