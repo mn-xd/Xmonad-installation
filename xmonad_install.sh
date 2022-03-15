@@ -51,7 +51,7 @@ fi
 installation(){
     echo "Do you want to install xmonad with all it's dependencies (y,n)"
     read xmonad
-    if [$xmonad == "y"] || [$xmonad == "yes"]; then
+    if ["$xmonad" == "y"] || ["$xmonad" == "yes"]; then
 			Dependencies
     	basePackages
       echo "Do you want to install alacritty terminal (y,n)"
