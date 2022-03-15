@@ -28,32 +28,32 @@ webBrowser(){
 installation(){
     echo "Do you want to install xmonad with all it's dependencies (y,n)"
     read xmonad
-    if [$xmonad == "y"] || [$xmonad == "yes"]
+    if [$xmonad == "y"] || [$xmonad == "yes"];
     then
         Dependencies
         basePackages
         echo "Do you want to install alacritty terminal (y,n)"
         read alacritty1
-        if [$alacritty1 == "y"] || [$alacritty1 == "yes"]
+        if [$alacritty1 == "y"] || [$alacritty1 == "yes"];
         then
             alacritty
-        elif [$alacritty1 == "n"] || [$alacritty1 == "no"]
+        elif [$alacritty1 == "n"] || [$alacritty1 == "no"];
         then
-            break
+            :
         fi
         echo "Do you want to install firefox (y,n)"
         read firefox
-        if [$firefox == "y"] || [$firefox == "yes"]
+        if [$firefox == "y"] || [$firefox == "yes"];
         then
             webBrowser
-        elif [$firefox == "n"] || [$firefox == "no"]
+        elif [$firefox == "n"] || [$firefox == "no"];
         then
-            break
+            :
         fi
 
-    elif [$xmonad == "n"] || [$xmonad == "no"]
+    elif [$xmonad == "n"] || [$xmonad == "no"];
     then
-        break
+        :
     fi
 
 }
