@@ -57,3 +57,4 @@ installation(){
     fi
 
 }
+installation
