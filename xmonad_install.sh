@@ -33,17 +33,17 @@ installation(){
         Dependencies
         basePackages
         echo "Do you want to install alacritty terminal (y,n)"
-        read alacritty
-        if [$alacritty == "y"] || [$alacritty == "yes"]
+        read alacritty1
+        if [$alacritty1 == "y"] || [$alacritty1 == "yes"]
         then
             alacritty
-        elif [$alacritty == "n"] || [$alacritty == "no"]
+        elif [$alacritty1 == "n"] || [$alacritty1 == "no"]
         then
             break
         fi
         echo "Do you want to install firefox (y,n)"
         read firefox
-         if [$firefox == "y"] || [$firefox == "yes"]
+        if [$firefox == "y"] || [$firefox == "yes"]
         then
             webBrowser
         elif [$firefox == "n"] || [$firefox == "no"]
