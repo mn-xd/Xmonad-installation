@@ -78,11 +78,4 @@ installation(){
     esac
 
 }
-Dependencies
-            basePackages
-            echo "Do you want to install alacritty terminal (y,n)"
-            alacrittyInstallation
-            echo "Do you want to install firefox (y,n)"
-            webBrowserInstallation
-
 installation
