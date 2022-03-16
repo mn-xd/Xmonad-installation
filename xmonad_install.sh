@@ -25,51 +25,64 @@ webBrowser(){
     sudo pacman -S firefox
 }
 alacrittyInstallation(){
-read alacritty1
-alacritty1="$(echo $alacritty1 | tr '[:upper:]' '[:lower:]')"
+read -r -p "Do you want to install alacritty terminal [y,n]" alacrittyInput
 
-if ["$alacritty1" == "y"] || ["$alacritty1" == "yes"]
-then
-	alacritty
-elif ["$alacritty1" == "n"] || ["$alacritty1" == "no"]
-then
-	:
-else
-	echo "Input not recognised, must be yes or no"
-	alacrittyInstallation
-fi
+case $input in
+      [yY][eE][sS]|[yY])
+            alacritty
+            ;;
+      [nN][oO]|[nN])
+            webBrowserInstallation
+            ;;
+      *)
+            echo "Invalid input"
+            alacrittyInstallation
+            ;;
+esac
 }
 webBrowserInstallation(){
-read firefox
-firefox="$(echo $firefox | tr '[:upper:]' '[:lower:]')"
+read -r -p "Do you want to install firefox [y,n]" firefox
 
-if ["$firefox" == "y"] || ["$firefox" == "yes"]
-then
-	webBrowser
-elif ["$firefox" == "n"] || ["$firefox" == "no"]
-then
-	:
-else
-	echo "Input not recognised, must be yes or no"
-	webBrowserInstallation
-fi
+case $firefox in
+      [yY][eE][sS]|[yY])
+            webBrowser
+            ;;
+      [nN][oO]|[nN])
+            exit
+            ;;
+      *)
+            echo "Invalid input"
+            webBrowserInstallation
+            ;;
+esac
 }
 installation(){
-    echo "Do you want to install xmonad with all it's dependencies (y,n)"
-    read xmonad
-		xmonad="$(echo $xmonad | tr '[:upper:]' '[:lower:]')"
-    if ["$xmonad" == "y"] || ["$xmonad" == "yes"]
-		then
-			Dependencies
-    	basePackages
-      echo "Do you want to install alacritty terminal (y,n)"
-			alacrittyInstallation
-			echo "Do you want to install firefox (y,n)"
-			webBrowserInstallation
-    elif ["$xmonad" == "n"] || ["$xmonad" == "no"]
-		then
-      :
-    fi
+    read -r -p "Do you want to install xmonad with all it's dependencies [y,n]" xmonadInput
+    case $xmonadInput in
+      [yY][eE][sS]|[yY])
+            Dependencies
+            basePackages
+            alacrittyInstallation
+            webBrowserInstallation
+            echo "\033[0;32mFINISHED\033[0m"
+            ;;
+      [nN][oO]|[nN])
+            echo "\033[0;31mCanceling\033[0m"
+            exit
+            ;;
+      *)
+            clear
+            echo "Invalid input restarting"
+            installation
+            ;;
+    esac
 
 }
+Dependencies
+            basePackages
+            echo "Do you want to install alacritty terminal (y,n)"
+            alacrittyInstallation
+            echo "Do you want to install firefox (y,n)"
+            webBrowserInstallation
+
 installation
