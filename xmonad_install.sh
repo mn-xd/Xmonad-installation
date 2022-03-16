@@ -24,7 +24,7 @@ basePackages(){
     sudo pacman -Syy --noconfirm xmobar dmenu xterm picom nitrogen
     mkdir -p .config/picom
     mkdir -p .config/xmobar
-    sudo systemctl enable sddm.service
+    sudo systemctl enable sddm
 }
 webBrowser(){
     sudo pacman -S firefox
