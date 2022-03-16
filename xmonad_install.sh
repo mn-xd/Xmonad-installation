@@ -10,6 +10,7 @@ alacritty(){
     git clone https://github.com/alacritty/alacritty.git
     cd alacritty
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+		source $HOME/.cargo/env
     rustup override set stable
     rustup update stable
     sudo pacman -S cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python
