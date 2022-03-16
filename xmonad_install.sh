@@ -27,7 +27,7 @@ webBrowser(){
 alacrittyInstallation(){
 read -r -p "Do you want to install alacritty terminal [y,n]" alacrittyInput
 
-case $input in
+case $alacrittyInput in
       [yY][eE][sS]|[yY])
             alacritty
             ;;
