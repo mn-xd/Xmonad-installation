@@ -1,4 +1,8 @@
-# Easier to use Arch linux installer.
-## Still in beta
+# Easie to use XMONAD installer
 
-It sets up everything for you, you only need to write few lines of code to setup archlinux installation.
+## Description
+Script for arch linux to install xmonad with all dependencies. Optionally with this script you can install alacritty terminal emulator and firefox web browser
+
+## Installation
+To install you need to do `git clone https://github.com/mn-xd/Xmonad-installation.git` then  `cd Xmonad-installation` and `chmod +x xmonad_install.sh`.
+To run this script you can type this command `./xmonad_install.sh`.

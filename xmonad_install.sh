@@ -1,11 +1,14 @@
 #!/bin/bash
 
+#TODO yay install with username prompt
 
 Dependencies(){
     sudo pacman -S --noconfirm git
+    #qt 5 installation for sddm to work
     sudo pacman -S --noconfirm qt5
-    sudo pacman -Sy --noconfirm curl
+    sudo pacman -S --noconfirm curl
 }
+
 alacritty(){
     cd
     git clone https://github.com/alacritty/alacritty.git
@@ -17,20 +20,44 @@ alacritty(){
     sudo pacman -S cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python
     cargo build --release
     mkdir -p .config/alacritty/
+    #adding alacritty to path to work anywhere
+	sudo cp target/release/alacritty /usr/local/bin
+	sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+	sudo desktop-file-install extra/linux/Alacritty.desktop
+	sudo update-desktop-database
 }
+
 basePackages(){
     sudo pacman -Syu
-    sudo pacman -Syy --noconfirm xorg sddm xmonad xmonad-contrib
-    sudo pacman -Syy --noconfirm xmobar dmenu xterm picom nitrogen
-    mkdir -p .config/picom
+    sudo pacman -S --noconfirm xorg sddm xmonad xmonad-contrib
+    sudo pacman -S --noconfirm xmobar dmenu xterm nitrogen
     mkdir -p .config/xmobar
     sudo systemctl enable sddm
 }
+
 webBrowser(){
-    sudo pacman -S firefox
+    sudo pacman -S --noconfirm firefox
+}
+
+picomInstallation(){
+read -r -p "Do you want to install picom(It is needed to run xmonad) [y,n]" picomInput
+
+case $picomInput in
+      [yY][eE][sS]|[yY])
+            sudo pacman -S --noconfirm picom
+            mkdir -p .config/picom
+            ;;
+      [nN][oO]|[nN])
+            alacrittyInstallation
+            ;;
+      *)
+            echo "Invalid input"
+            picomInstallation
+			;;
+esac
 }
 alacrittyInstallation(){
-read -r -p "Do you want to install alacritty terminal(you need to set it up) [y,n]" alacrittyInput
+read -r -p "Do you want to install alacritty terminal(You need to set it up) [y,n]" alacrittyInput
 
 case $alacrittyInput in
       [yY][eE][sS]|[yY])
@@ -54,6 +81,7 @@ case $firefox in
             ;;
       [nN][oO]|[nN])
             exit
+            echo "\033[0;32mFINISHED\033[0m"
             ;;
       *)
             echo "Invalid input"
@@ -62,14 +90,16 @@ case $firefox in
 esac
 }
 installation(){
-    read -r -p "Do you want to install xmonad with all it's dependencies [y,n]" xmonadInput
+    read -r -p "Do you want to install xmonad with all it's dependencies(xmobar, dmenu, xorg, nitrogen) [y,n]" xmonadInput
     case $xmonadInput in
           [yY][eE][sS]|[yY])
             clear
-            Dependencies
-            clear
             basePackages
             clear
+            Dependencies
+            clear
+			picomInstallation
+			clear
             alacrittyInstallation
             clear
             webBrowserInstallation
