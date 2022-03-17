@@ -1,4 +1,4 @@
-# Easie to use XMONAD installer
+# Easy to use XMONAD installer
 
 ## Description
 Script for arch linux to install xmonad with all dependencies. Optionally with this script you can install alacritty terminal emulator and firefox web browser
