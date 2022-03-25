@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #TODO yay install with username prompt
-
 Dependencies(){
     sudo pacman -S --noconfirm git
     #qt 5 installation for sddm to work
@@ -10,28 +9,30 @@ Dependencies(){
 }
 
 alacritty(){
+    cd alacritty
+    mv xmonad.hs ~/.xmonad/xmonad.hs
     cd
     git clone https://github.com/alacritty/alacritty.git
     cd alacritty
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	source $HOME/.cargo/env
+    source $HOME/.cargo/env
     rustup override set stable
     rustup update stable
-    sudo pacman -S cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python
+    sudo pacman -S --noconfirm cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python
     cargo build --release
     mkdir -p .config/alacritty/
     #adding alacritty to path to work anywhere
-	sudo cp target/release/alacritty /usr/local/bin
-	sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-	sudo desktop-file-install extra/linux/Alacritty.desktop
-	sudo update-desktop-database
+    sudo cp target/release/alacritty /usr/local/bin
+    sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    sudo desktop-file-install extra/linux/Alacritty.desktop
+    sudo update-desktop-database
 }
 
 basePackages(){
     sudo pacman -Syu
     sudo pacman -S --noconfirm xorg sddm xmonad xmonad-contrib
     sudo pacman -S --noconfirm xmobar dmenu xterm nitrogen
-    mkdir -p .config/xmobar
+    mkdir -p ~/.config/xmobar
     sudo systemctl enable sddm
 }
 
@@ -53,7 +54,7 @@ case $picomInput in
       *)
             echo "Invalid input"
             picomInstallation
-			;;
+            ;;
 esac
 }
 alacrittyInstallation(){
@@ -98,8 +99,8 @@ installation(){
             clear
             Dependencies
             clear
-			picomInstallation
-			clear
+            picomInstallation
+            clear
             alacrittyInstallation
             clear
             webBrowserInstallation
@@ -115,6 +116,5 @@ installation(){
             installation
             ;;
     esac
-
 }
 installation
