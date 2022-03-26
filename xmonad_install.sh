@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#TODO yay install with username prompt
 Dependencies(){
     sudo pacman -S --noconfirm git
     #qt 5 installation for sddm to work
@@ -9,6 +8,7 @@ Dependencies(){
 }
 
 alacritty(){
+    #copying xmonad.hs file to config path
     cd alacritty
     mv xmonad.hs ~/.xmonad/xmonad.hs
     cd
@@ -31,14 +31,61 @@ alacritty(){
 basePackages(){
     sudo pacman -Syu
     sudo pacman -S --noconfirm xorg sddm xmonad xmonad-contrib
-    sudo pacman -S --noconfirm xmobar dmenu xterm nitrogen
-    mkdir -p ~/.config/xmobar
+    sudo pacman -S --noconfirm dmenu xterm nitrogen
     sudo systemctl enable sddm
 }
-
 webBrowser(){
     sudo pacman -S --noconfirm firefox
 }
+
+
+#----------------------------------------
+
+#instalation inputs
+
+#----------------------------------------
+
+sddmInstallation(){
+read -r -p "Do you want to install sddm or lightdm or nothing [1,2,n]" sddmInput
+
+case $sddmInput in
+      [sS][dD][dD][mM]|[1])
+            sudo pacman -S --noconfirm sddm
+            sudo systemctl enable sddm
+            ;;
+      [lL][iI][gG][hH][tT][dD][mM]|[2])
+            sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
+            sudo systemctl enable lightdm
+            ;;
+      [nN][oO]|[nN])
+            xmobarInstallation
+            ;;
+      *)
+            echo "Invalid input"
+            sddmInstallation
+            ;;
+esac
+}
+
+
+xmobarInstallation(){
+read -r -p "Do you want to install xmobar [y,n]" xmobarInput
+
+case $xmobarInput in
+      [yY][eE][sS]|[yY])
+            mkdir -p ~/.config/xmobar
+            sudo pacman -S --noconfirm xmobar
+            ;;
+      [nN][oO]|[nN])
+            picomInstallation
+            ;;
+      *)
+            echo "Invalid input"
+            xmobarInstallation
+            ;;
+esac
+}
+
 
 picomInstallation(){
 read -r -p "Do you want to install picom(It is needed to run xmonad) [y,n]" picomInput
@@ -57,6 +104,8 @@ case $picomInput in
             ;;
 esac
 }
+
+
 alacrittyInstallation(){
 read -r -p "Do you want to install alacritty terminal(You need to set it up) [y,n]" alacrittyInput
 
@@ -65,6 +114,9 @@ case $alacrittyInput in
             alacritty
             ;;
       [nN][oO]|[nN])
+            #copying xmonad.hs file to config path
+            cd normal
+            mv xmonad.hs ~/.xmonad/xmonad.hs
             webBrowserInstallation
             ;;
       *)
@@ -73,6 +125,8 @@ case $alacrittyInput in
             ;;
 esac
 }
+
+
 webBrowserInstallation(){
 read -r -p "Do you want to install firefox [y,n]" firefox
 
@@ -90,6 +144,15 @@ case $firefox in
             ;;
 esac
 }
+
+
+#----------------------------------------
+
+#instalation control
+
+#----------------------------------------
+
+
 installation(){
     read -r -p "Do you want to install xmonad with all it's dependencies(xmobar, dmenu, xorg, nitrogen) [y,n]" xmonadInput
     case $xmonadInput in
@@ -99,11 +162,16 @@ installation(){
             clear
             Dependencies
             clear
+            sddmInstallation
+            clear
+            xmobarInstallation
+            clear
             picomInstallation
             clear
             alacrittyInstallation
             clear
             webBrowserInstallation
+            clear
             echo "\033[0;32mFINISHED\033[0m"
             ;;
       [nN][oO]|[nN])
