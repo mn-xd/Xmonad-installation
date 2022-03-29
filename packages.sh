@@ -8,7 +8,7 @@ Dependencies(){
 }
 
 alacrittyPackages(){
-    if [$XMOBARINSTALLATION_STATUS == 1]
+    if [ $XMOBARINSTALLATION_STATUS == 1 ]
     then
         #copying xmonad.hs file to config path
         cd alacritty/alacritty_xmobar/
@@ -42,7 +42,7 @@ alacrittyPackages(){
     sudo update-desktop-database
 }
 alacrittyPackagesNo(){
-    if [$XMOBARINSTALLATION_STATUS == 1]
+    if [ $XMOBARINSTALLATION_STATUS == 1 ]
     then
         #copying xmonad.hs file to config path
         cd normal/normal_xmobar/
