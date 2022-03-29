@@ -1,4 +1,4 @@
-XMOBARINSTALLATION_STATUS = 0
+XMOBARINSTALLATION_STATUS=0
 
 Dependencies(){
     sudo pacman -S --noconfirm git
@@ -71,7 +71,7 @@ webBrowser(){
     sudo pacman -S --noconfirm firefox
 }
 xmobarPackages(){
-    XMOBARINSTALLATION_STATUS = 1
+    XMOBARINSTALLATION_STATUS=1
     mkdir -p ~/.config/xmobar
     sudo pacman -S --noconfirm xmobar
 }
