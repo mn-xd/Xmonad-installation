@@ -52,7 +52,6 @@ case $sddmInput in
             sudo systemctl enable lightdm
             ;;
       [nN][oO]|[nN])
-            xmobarInstallation
             ;;
       *)
             echo "Invalid input"
