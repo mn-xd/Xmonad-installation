@@ -1,5 +1,11 @@
 source packages.sh
 
+#----------------------------------------
+
+#install inputs
+
+#----------------------------------------
+
 inputForm(){
 
 #1 - input name
@@ -20,7 +26,19 @@ case $1 in
             ;;
 esac
 }
-
+Dependencies(){
+    sudo pacman -S --noconfirm git
+    #qt 5 installation for sddm to work
+    sudo pacman -S --noconfirm qt5
+    sudo pacman -S --noconfirm curl
+}
+basePackages(){
+    sudo pacman -Syu
+    mkdir ~/.config/xmonad/
+    sudo pacman -S --noconfirm xorg sddm xmonad xmonad-contrib
+    sudo pacman -S --noconfirm dmenu xterm nitrogen
+    sudo systemctl enable sddm
+}
 sddmInstallation(){
 read -r -p "Do you want to install sddm or lightdm or nothing [1,2,n]" sddmInput
 

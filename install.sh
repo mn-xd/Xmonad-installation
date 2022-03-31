@@ -1,5 +1,4 @@
 #!/bin/bash
-source packages.sh
 source install_inputs.sh
 
 #----------------------------------------
@@ -8,9 +7,8 @@ source install_inputs.sh
 
 #----------------------------------------
 
-
 installation(){
-    read -r -p "Do you want to install xmonad with all it's dependencies(xmobar, dmenu, xorg, nitrogen) [y,n]" xmonadInput
+    read -r -p "Do you want to install xmonad [y,n]" xmonadInput
     case $xmonadInput in
           [yY][eE][sS]|[yY])
             clear
@@ -22,15 +20,16 @@ installation(){
             clear
             xmobarInstallation
             clear
-            picomInstallation
-            clear
+						picomInstallation
+						clear
             alacrittyInstallation
             clear
             webBrowserInstallation
-            echo "\033[0;32mFINISHED\033[0m"
+            clear
+            echo "\e[32mInstallation finished\e[0m"
             ;;
       [nN][oO]|[nN])
-            echo "\033[0;31mCanceling\033[0m"
+            echo "\e[31mInstallation aborted\e[0m"
             exit
             ;;
       *)

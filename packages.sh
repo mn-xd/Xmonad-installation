@@ -1,11 +1,10 @@
 XMOBARINSTALLATION_STATUS=0
 
-Dependencies(){
-    sudo pacman -S --noconfirm git
-    #qt 5 installation for sddm to work
-    sudo pacman -S --noconfirm qt5
-    sudo pacman -S --noconfirm curl
-}
+#----------------------------------------
+
+#packages
+
+#----------------------------------------
 
 alacrittyPackages(){
     if [ $XMOBARINSTALLATION_STATUS == 1 ]
@@ -59,13 +58,6 @@ alacrittyPackagesNo(){
         webBrowserInstallation
     fi
 
-}
-basePackages(){
-    sudo pacman -Syu
-    mkdir ~/.config/xmonad/
-    sudo pacman -S --noconfirm xorg sddm xmonad xmonad-contrib
-    sudo pacman -S --noconfirm dmenu xterm nitrogen
-    sudo systemctl enable sddm
 }
 webBrowser(){
     sudo pacman -S --noconfirm firefox
