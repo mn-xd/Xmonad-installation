@@ -76,7 +76,7 @@ inputForm $picomInput picomPackages alacrittyInstallation picomInstallation
 
 
 alacrittyInstallation(){
-read -r -p "Do you want to install alacritty terminal(You need to set it up) [y,n]" alacrittyInput
+read -r -p "Do you want to install alacritty terminal [y,n]" alacrittyInput
 
 inputForm $alacrittyInput alacrittyPackages alacrittyPackagesNo alacrittyInstallation
 }

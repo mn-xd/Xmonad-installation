@@ -8,35 +8,38 @@ source install_inputs.sh
 #----------------------------------------
 
 installation(){
-    read -r -p "Do you want to install xmonad [y,n]" xmonadInput
+    read -r -p "Do you want to install xmonad or awesome wm [1, 2, n]" xmonadInput
     case $xmonadInput in
-          [yY][eE][sS]|[yY])
-            clear
-            basePackages
-            clear
-            Dependencies
-            clear
-            sddmInstallation
-            clear
-            xmobarInstallation
-            clear
-						picomInstallation
-						clear
-            alacrittyInstallation
-            clear
-            webBrowserInstallation
-            clear
-            echo "\e[32mInstallation finished\e[0m"
-            ;;
-      [nN][oO]|[nN])
-            echo "\e[31mInstallation aborted\e[0m"
-            exit
-            ;;
-      *)
-            clear
-            echo "Invalid input"
-            installation
-            ;;
+          [xX][mM][oO][nN][aA][dD]|[1])
+                clear
+                basePackages
+                clear
+                Dependencies
+                clear
+                sddmInstallation
+                clear
+                xmobarInstallation
+                clear
+                picomInstallation
+                clear
+                alacrittyInstallation
+                clear
+                webBrowserInstallation
+                clear
+                echo "\e[32mInstallation finished\e[0m"
+                ;;
+          [aA][wW][eE][sS][oO][mM][eE]|[2])
+                sudo pacman -S xorg-server xorg-xinit xterm awesome
+                ;;
+          [nN][oO]|[nN])
+                echo "\e[31mInstallation aborted\e[0m"
+                exit
+                ;;
+          *)
+                clear
+                echo "Invalid input"
+                installation
+                ;;
     esac
 }
 installation
