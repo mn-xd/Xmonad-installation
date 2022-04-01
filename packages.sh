@@ -49,13 +49,11 @@ alacrittyPackagesNo(){
         #for testing
         echo "normal with xmobar"
         sleep 10s
-        webBrowserInstallation
     else
         cd normal
         mv xmonad.hs ~/.config/xmonad/xmonad.hs
         echo "normal without xmobar"
         sleep 10s
-        webBrowserInstallation
     fi
 
 }
@@ -70,4 +68,17 @@ xmobarPackages(){
 picomPackages(){
     sudo pacman -S --noconfirm picom
     mkdir -p .config/picom
+}
+Dependencies(){
+    sudo pacman -S --noconfirm git
+    #qt 5 installation for sddm to work
+    sudo pacman -S --noconfirm qt5
+    sudo pacman -S --noconfirm curl
+}
+basePackages(){
+    sudo pacman -Syu --noconfirm
+    mkdir ~/.config/xmonad/
+    sudo pacman -S --noconfirm xorg sddm xmonad xmonad-contrib
+    sudo pacman -S --noconfirm dmenu xterm nitrogen
+    sudo systemctl enable sddm
 }

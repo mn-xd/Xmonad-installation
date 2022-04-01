@@ -26,10 +26,19 @@ installation(){
                 clear
                 webBrowserInstallation
                 clear
+                sudo pacman -Syu --noconfirm
+                clear
                 echo "\e[32mInstallation finished\e[0m"
                 ;;
           [aA][wW][eE][sS][oO][mM][eE]|[2])
-                sudo pacman -S xorg-server xorg-xinit xterm awesome
+                sudo pacman -Syu --noconfirm
+                clear
+                sudo pacman -S --noconfirm xorg-server xorg-xinit xterm awesome
+                clear
+                sddmInstallation
+                clear
+                sudo pacman -Syu --noconfirm
+                clear
                 ;;
           [nN][oO]|[nN])
                 echo "\e[31mInstallation aborted\e[0m"
