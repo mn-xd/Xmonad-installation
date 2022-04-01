@@ -49,11 +49,13 @@ alacrittyPackagesNo(){
         #for testing
         echo "normal with xmobar"
         sleep 10s
+        webBrowserInstallation
     else
         cd normal
         mv xmonad.hs ~/.config/xmonad/xmonad.hs
         echo "normal without xmobar"
         sleep 10s
+        webBrowserInstallation
     fi
 
 }

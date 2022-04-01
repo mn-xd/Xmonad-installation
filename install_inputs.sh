@@ -39,6 +39,7 @@ case $sddmInput in
             sudo systemctl enable lightdm
             ;;
       [nN][oO]|[nN])
+            xmobarInstallation
             ;;
       *)
             echo "Invalid input"
@@ -47,18 +48,41 @@ case $sddmInput in
 esac
 }
 
+sddmInstallationAwesome(){
+read -r -p "Do you want to install sddm or lightdm or nothing [1,2,n]" sddmAwInput
+
+case $sddmAwInput in
+      [sS][dD][dD][mM]|[1])
+            sudo pacman -S --noconfirm sddm
+            sudo systemctl enable sddm
+            ;;
+      [lL][iI][gG][hH][tT][dD][mM]|[2])
+            sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
+            sudo systemctl enable lightdm
+            ;;
+      [nN][oO]|[nN])
+            sudo pacman -Syu --noconfirm
+            clear
+            exit
+            ;;
+      *)
+            echo "Invalid input"
+            sddmInstallation
+            ;;
+esac
+}
 
 xmobarInstallation(){
 read -r -p "Do you want to install xmobar [y,n]" xmobarInput
 
-inputForm $xmobarInput xmobarPackages   xmobarInstallation
+inputForm $xmobarInput xmobarPackages picomInstallation xmobarInstallation
 }
 
 
 picomInstallation(){
 read -r -p "Do you want to install picom(It is needed to run xmonad) [y,n]" picomInput
 
-inputForm $picomInput picomPackages   picomInstallation
+inputForm $picomInput picomPackages alacrittyInstallation  picomInstallation
 }
 
 

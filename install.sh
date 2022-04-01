@@ -35,7 +35,7 @@ installation(){
                 clear
                 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm awesome
                 clear
-                sddmInstallation
+                sddmInstallationAwesome
                 clear
                 sudo pacman -Syu --noconfirm
                 clear
