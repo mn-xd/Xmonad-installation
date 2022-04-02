@@ -1,10 +1,28 @@
 XMOBARINSTALLATION_STATUS=0
 
+source install_inputs.sh
 #----------------------------------------
 
 #packages
 
 #----------------------------------------
+alacrittyPackagesAw(){
+    cd
+    git clone https://github.com/alacritty/alacritty.git
+    cd alacritty
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source $HOME/.cargo/env
+    rustup override set stable
+    rustup update stable
+    sudo pacman -S --noconfirm cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python
+    cargo build --release
+    mkdir -p .config/alacritty/
+    #adding alacritty to path to work anywhere
+    sudo cp target/release/alacritty /usr/local/bin
+    sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    sudo desktop-file-install extra/linux/Alacritty.desktop
+    sudo update-desktop-database
+}
 
 alacrittyPackages(){
     if [ $XMOBARINSTALLATION_STATUS == 1 ]
@@ -58,6 +76,9 @@ alacrittyPackagesNo(){
         webBrowserInstallation
     fi
 
+}
+alacrittyPackagesNoAw(){
+    sddmInstallationAwesome
 }
 webBrowser(){
     sudo pacman -S --noconfirm firefox

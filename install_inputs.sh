@@ -86,6 +86,12 @@ inputForm $picomInput picomPackages alacrittyInstallation  picomInstallation
 }
 
 
+alacrittyInstallationAwesome(){
+read -r -p "Do you want to install alacritty terminal [y,n]" alacrittyInputAw
+
+inputForm $alacrittyInputAw alacrittyPackagesAw alacrittyPackagesNoAw alacrittyInstallationAwesome
+}
+
 alacrittyInstallation(){
 read -r -p "Do you want to install alacritty terminal [y,n]" alacrittyInput
 

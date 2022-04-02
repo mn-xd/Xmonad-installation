@@ -33,7 +33,9 @@ installation(){
           [aA][wW][eE][sS][oO][mM][eE]|[2])
                 sudo pacman -Syu --noconfirm
                 clear
-                sudo pacman -S --noconfirm xorg-server xorg-xinit xterm awesome
+                sudo pacman -S --noconfirm xorg-server xorg-xinit xterm awesome picom nitrogen
+                clear
+                alacrittyInstallationAwesome
                 clear
                 sddmInstallationAwesome
                 clear
