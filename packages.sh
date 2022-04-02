@@ -66,10 +66,12 @@ xmobarPackages(){
     XMOBARINSTALLATION_STATUS=1
     mkdir -p ~/.config/xmobar
     sudo pacman -S --noconfirm xmobar
+    picomInstallation
 }
 picomPackages(){
     sudo pacman -S --noconfirm picom
     mkdir -p .config/picom
+    alacrittyInstallation
 }
 Dependencies(){
     sudo pacman -S --noconfirm git
