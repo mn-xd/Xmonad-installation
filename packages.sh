@@ -1,6 +1,4 @@
 XMOBARINSTALLATION_STATUS=0
-
-source install_inputs.sh
 #----------------------------------------
 
 #packages
@@ -76,9 +74,6 @@ alacrittyPackagesNo(){
         webBrowserInstallation
     fi
 
-}
-alacrittyPackagesNoAw(){
-    sddmInstallationAwesome
 }
 webBrowser(){
     sudo pacman -S --noconfirm firefox
