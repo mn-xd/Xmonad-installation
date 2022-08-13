@@ -6,3 +6,5 @@ Script for arch linux to install xmonad with all dependencies. Optionally with t
 ## Installation
 To install you need to do `git clone https://github.com/mn-xd/Xmonad-installation.git` then  `cd Xmonad-installation` and `chmod +x install.sh`.
 To run this script you can type this command `./install.sh`.
+
+Don't use it yeet, it is still on beta release.
